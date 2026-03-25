@@ -46,7 +46,7 @@ button:hover { background:#3b5be0;}
 
 <script>
     function sendToSheet(input, style){
-    const url = "AKfycbzv_YyGw7JxFij4YjbdeeG-yjzKGgzxyyOUf7DWg24-9uJ64mVMaEWAO8SCyXdznY6elg"; // 替換成你部署的 URL
+    const url = "https://script.google.com/macros/s/AKfycbxONQvI5nemsNazxtAblGgXNnyay5HpNF8Y4Eoxds3lskKll12_71KMxIsFPHwCBNCF9g/exec"; // 替換成你部署的 URL
     fetch(url, {
         method: "POST",
         body: JSON.stringify({text: input, style: style}),
