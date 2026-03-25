@@ -45,6 +45,19 @@ button:hover { background:#3b5be0;}
 </div>
 
 <script>
+    function sendToSheet(input, style){
+    const url = "AKfycbzv_YyGw7JxFij4YjbdeeG-yjzKGgzxyyOUf7DWg24-9uJ64mVMaEWAO8SCyXdznY6elg"; // 替換成你部署的 URL
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({text: input, style: style}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => console.log("存到 Google Sheet 成功", data))
+    .catch(err => console.error("存到 Google Sheet 失敗", err));
+}
 let userInputs = []; // 用來收集使用者輸入
 
 function rewriteExample() {
@@ -86,7 +99,7 @@ function rewriteExample() {
             li.innerText = text;
             inputList.appendChild(li);
         });
-
+        sendToSheet(input, style);
         // 清空輸入框
         document.getElementById("inputText").value = "";
     }, 1000);
