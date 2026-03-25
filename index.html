@@ -37,18 +37,29 @@ button:hover { background:#3b5be0;}
 <div class="label">改寫結果</div>
 <div id="result">（結果會顯示在這裡）</div>
 </div>
+
+<div class="result-box">
+<div class="label">收集使用者輸入</div>
+<ul id="inputList"></ul>
+</div>
 </div>
 
 <script>
+let userInputs = []; // 用來收集使用者輸入
+
 function rewriteExample() {
     const input = document.getElementById("inputText").value.trim();
     const style = document.getElementById("style").value;
     const resultDiv = document.getElementById("result");
+    const inputList = document.getElementById("inputList");
 
     if(!input){
         resultDiv.innerText = "請先輸入文字";
         return;
     }
+
+    // 收集輸入
+    userInputs.push(input);
 
     resultDiv.classList.add("loading");
     resultDiv.innerText = "AI 思考中...";
@@ -67,6 +78,17 @@ function rewriteExample() {
 
         resultDiv.classList.remove("loading");
         resultDiv.innerText = rewritten;
+
+        // 更新收集輸入列表
+        inputList.innerHTML = "";
+        userInputs.forEach((text, index) => {
+            const li = document.createElement("li");
+            li.innerText = text;
+            inputList.appendChild(li);
+        });
+
+        // 清空輸入框
+        document.getElementById("inputText").value = "";
     }, 1000);
 }
 </script>
